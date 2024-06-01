@@ -17,6 +17,17 @@ def get_all_Games():
     Game_Serializer= GameSerializer(Games, many=True)
     return Game_Serializer.data
 
+def get_all_game_developers():
+    developers = GameDeveloper.objects.all().order_by('name')
+    developers_serializers = GameDeveloperSerializer(developers, many=True)
+    return developers_serializers.data
+
+def get_all_game_stores():
+    stores = GameStore.objects.all().order_by('name')
+    stores_serializers = GameStoreSerializer(stores, many=True)
+    return stores_serializers.data
+
+
 def indexGames(request):
     games = Game.objects.all().order_by('name')
     developers = GameDeveloper.objects.all().order_by('name')
@@ -35,80 +46,62 @@ def game_store_rest(request):
     Store=get_all_game_stores()
     return JsonResponse(Store, safe=False)
 
-def add_games_view(request):
+# def add_games_view(request):
     
-    if request.method == 'POST':
-        games_form = GamesForm(request.POST)
-        if games_form.is_valid():
-            games = games_form.save()
-            return HttpResponseRedirect('/')
-    if request.method == 'GET':
-        games_form = GamesForm()
-        csrf_token = get_token(request)
-        html_form = f"""
-            <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
-                {games_form.as_p()}
-                <button type="submit">Submit</button>
-            </form>
-        """
-        return HttpResponse(html_form)
+#     if request.method == 'POST':
+#         games_form = GamesForm(request.POST)
+#         if games_form.is_valid():
+#             games = games_form.save()
+#             return HttpResponseRedirect('/')
+#     if request.method == 'GET':
+#         games_form = GamesForm()
+#         csrf_token = get_token(request)
+#         html_form = f"""
+#             <form method="post">
+#             <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+#                 {games_form.as_p()}
+#                 <button type="submit">Submit</button>
+#             </form>
+#         """
+#         return HttpResponse(html_form)
 
-def get_all_game_developers():
-    developers = GameDeveloper.objects.all().order_by('name')
-    developers_serializers = GameDeveloperSerializer(developers, many=True)
-    return developers_serializers.data
-
-def get_all_game_stores():
-    stores = GameStore.objects.all().order_by('name')
-    stores_serializers = GameStoreSerializer(stores, many=True)
-    return stores_serializers.data
-
-def game_developers_rest(request):
-    developers = get_all_game_developers()
-    return JsonResponse(developers, safe=False)
-
-def game_stores_rest(request):
-    stores = get_all_game_stores()
-    return JsonResponse(stores, safe=False)
-
-def add_game_store_view(request):
+# def add_game_store_view(request):
     
-    if request.method == 'POST':
-        gamesStore_form = GameStoreForm(request.POST)
-        if gamesStore_form.is_valid():
-            gameStore = gamesStore_form.save()
-            return HttpResponseRedirect('/')
-    if request.method == 'GET':
-        gamesStore_form = GameStoreForm()
-        csrf_token = get_token(request)
-        html_form = f"""
-            <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
-                {gamesStore_form.as_p()}
-                <button type="submit">Submit</button>
-            </form>
-        """
-        return HttpResponse(html_form)
+#     if request.method == 'POST':
+#         gamesStore_form = GameStoreForm(request.POST)
+#         if gamesStore_form.is_valid():
+#             gameStore = gamesStore_form.save()
+#             return HttpResponseRedirect('/')
+#     if request.method == 'GET':
+#         gamesStore_form = GameStoreForm()
+#         csrf_token = get_token(request)
+#         html_form = f"""
+#             <form method="post">
+#             <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+#                 {gamesStore_form.as_p()}
+#                 <button type="submit">Submit</button>
+#             </form>
+#         """
+#         return HttpResponse(html_form)
     
-def add_game_developer_view(request):
+# def add_game_developer_view(request):
     
-    if request.method == 'POST':
-        gamesDev_form = GameDeveloperForm(request.POST)
-        if gamesDev_form.is_valid():
-            gamesDev_form = gamesDev_form.save()
-            return HttpResponseRedirect('/')
-    if request.method == 'GET':
-        gamesDev_form = GameDeveloperForm()
-        csrf_token = get_token(request)
-        html_form = f"""
-            <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
-                {gamesDev_form.as_p()}
-                <button type="submit">Submit</button>
-            </form>
-        """
-        return HttpResponse(html_form)
+#     if request.method == 'POST':
+#         gamesDev_form = GameDeveloperForm(request.POST)
+#         if gamesDev_form.is_valid():
+#             gamesDev_form = gamesDev_form.save()
+#             return HttpResponseRedirect('/')
+#     if request.method == 'GET':
+#         gamesDev_form = GameDeveloperForm()
+#         csrf_token = get_token(request)
+#         html_form = f"""
+#             <form method="post">
+#             <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+#                 {gamesDev_form.as_p()}
+#                 <button type="submit">Submit</button>
+#             </form>
+#         """
+#         return HttpResponse(html_form)
     
 # def indexGameStore(request):
 #     GameStore = get_all_game_stores()
