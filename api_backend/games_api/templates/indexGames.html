@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game List</title>
+  <!-- Enlace al archivo de estilos de Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white font-bold text-xl">Game List</h1>
+      <ul class="flex space-x-4">
+        <li><a href="#" class="text-white hover:text-gray-200">Inicio</a></li>
+        <li><a href="#" class="text-white hover:text-gray-200">Acerca de</a></li>
+        <li><a href="#" class="text-white hover:text-gray-200">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Tabla de Juegos -->
+    <h1 class="text-3xl font-bold mb-4">Lista de Juegos</h1>
+    <table class="w-full border-collapse border border-gray-300 mb-8">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 px-4 py-2">Game</th>
+          <th class="border border-gray-300 px-4 py-2">Game Developer</th>
+          <th class="border border-gray-300 px-4 py-2">Game Store</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for game in games %}
+        <tr class="bg-white">
+          <td class="border border-gray-300 px-4 py-2">{{ game.name }}</td>
+          <td class="border border-gray-300 px-4 py-2">
+            {% for developer in game_developers %}
+              {{ developer.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            {% for store in game_stores %}
+              {{ store.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Tabla de Desarrolladores de Juegos -->
+    <h1 class="text-3xl font-bold mb-4">Lista de Desarrolladores de Juegos</h1>
+    <table class="w-full border-collapse border border-gray-300 mb-8">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 px-4 py-2">Game Developer</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for developer in game_developers %}
+        <tr class="bg-white">
+          <td class="border border-gray-300 px-4 py-2">{{ developer.name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Tabla de Tiendas de Juegos -->
+    <h1 class="text-3xl font-bold mb-4">Lista de Tiendas de Juegos</h1>
+    <table class="w-full border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 px-4 py-2">Game Store</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for store in game_stores %}
+        <tr class="bg-white">
+          <td class="border border-gray-300 px-4 py-2">{{ store.name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
