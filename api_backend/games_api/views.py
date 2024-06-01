@@ -102,14 +102,6 @@ def game_store_rest(request):
 #             </form>
 #         """
 #         return HttpResponse(html_form)
-    
-# def indexGameStore(request):
-#     GameStore = get_all_game_stores()
-#     return render(request, 'indexGames.html', {'GameStore': GameStore})
-
-# def indexGameDev(request):
-#     GameDev = get_all_game_developers()
-#     return render(request, 'indexGames.html', {'GameDeveloper': GameDev})
 
 # def Gamesindex(request):
 #     Games = get_all_Games()
