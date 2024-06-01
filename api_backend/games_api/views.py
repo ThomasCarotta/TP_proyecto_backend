@@ -103,12 +103,6 @@ def game_store_rest(request):
 #         """
 #         return HttpResponse(html_form)
 
-# def Gamesindex(request):
-#     Games = get_all_Games()
-#     GameStore = get_all_game_stores()
-#     GameDeveloper = get_all_game_developers()
-#     return render(request, 'indexGames.html', {'games': Games, 'game_store': GameStore, 'game_developer': GameDeveloper})
-
 class NewGameDevView(CreateView):
     form_class = GameDeveloperForm
     template_name = 'form_gameDev.html'
