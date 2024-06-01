@@ -18,10 +18,10 @@ def get_all_Games():
     return Game_Serializer.data
 
 def indexGames(request):
-    Games = get_all_Games()
-    Dev=get_all_game_developers()
-    Store=get_all_game_stores()
-    return render(request, 'indexGames.html', {'games': Games,'game_developers':Dev,'game_stores':Store})
+    games = Game.objects.all().order_by('name')
+    developers = GameDeveloper.objects.all().order_by('name')
+    stores = GameStore.objects.all().order_by('name')
+    return render(request, 'indexGames.html', {'games': games, 'game_developers': developers, 'game_stores': stores})
 
 def games_rest(request):
     Games = get_all_Games()
@@ -110,21 +110,31 @@ def add_game_developer_view(request):
         """
         return HttpResponse(html_form)
     
-def indexGameStore(request):
-    GameStore = get_all_game_stores()
-    return render(request, 'indexGames.html', {'GameStore': GameStore})
+# def indexGameStore(request):
+#     GameStore = get_all_game_stores()
+#     return render(request, 'indexGames.html', {'GameStore': GameStore})
 
-def indexGameDev(request):
-    GameDev = get_all_game_developers()
-    return render(request, 'indexGames.html', {'GameDeveloper': GameDev})
+# def indexGameDev(request):
+#     GameDev = get_all_game_developers()
+#     return render(request, 'indexGames.html', {'GameDeveloper': GameDev})
 
-def Gamesindex(request):
-    Games = get_all_Games()
-    GameStore = get_all_game_stores()
-    GameDeveloper = get_all_game_developers()
-    return render(request, 'indexGames.html', {'games': Games, 'game_store': GameStore, 'game_developer': GameDeveloper})
+# def Gamesindex(request):
+#     Games = get_all_Games()
+#     GameStore = get_all_game_stores()
+#     GameDeveloper = get_all_game_developers()
+#     return render(request, 'indexGames.html', {'games': Games, 'game_store': GameStore, 'game_developer': GameDeveloper})
 
 class NewGameDevView(CreateView):
     form_class = GameDeveloperForm
     template_name = 'form_gameDev.html'
-    success_url = 'games_info/'
+    success_url = '/'
+
+class NewGameStoreView(CreateView):
+    form_class = GameStoreForm
+    template_name = 'form_gameStore.html'
+    success_url = '/'
+
+class NewGameView(CreateView):
+    form_class = GamesForm
+    template_name = 'form_game.html'
+    success_url = '/'

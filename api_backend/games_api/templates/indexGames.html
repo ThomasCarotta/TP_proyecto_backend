@@ -39,12 +39,12 @@
         <tr class="bg-white">
           <td class="border border-gray-300 px-4 py-2">{{ game.name }}</td>
           <td class="border border-gray-300 px-4 py-2">
-            {% for developer in game_developers %}
+            {% for developer in game.developer.all %}
               {{ developer.name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
           </td>
           <td class="border border-gray-300 px-4 py-2">
-            {% for store in game_stores %}
+            {% for store in game.store.all %}
               {{ store.name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
           </td>
