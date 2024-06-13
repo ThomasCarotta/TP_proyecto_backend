@@ -106,14 +106,14 @@ def game_store_rest(request):
 class NewGameDevView(CreateView):
     form_class = GameDeveloperForm
     template_name = 'form_gameDev.html'
-    success_url = '/'
+    success_url = '/games_info'
 
 class NewGameStoreView(CreateView):
     form_class = GameStoreForm
     template_name = 'form_gameStore.html'
-    success_url = '/'
+    success_url = '/games_info'
 
 class NewGameView(CreateView):
     form_class = GamesForm
     template_name = 'form_game.html'
-    success_url = '/'
+    success_url = '/games_info'
